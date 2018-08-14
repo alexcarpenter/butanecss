@@ -1,0 +1,19 @@
+// ==========================================================================
+// Tokens / Spacing
+// ==========================================================================
+
+
+$spacing: (
+  small: 8px,
+  default: 16px,
+  large: 32px
+);
+
+// Usage:
+//   .foo {
+//     margin-top: spacing(default);
+//   }
+
+@function spacing($key) {
+  @return map-get($spacing, $key);
+}

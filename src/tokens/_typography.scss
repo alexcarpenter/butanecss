@@ -1,0 +1,22 @@
+// ==========================================================================
+// Tokens / Typography
+// ==========================================================================
+
+
+$typography: (
+  font-family: (-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"),
+  base: (
+    font-size: 16px,
+    line-height: 20px,
+  )
+);
+
+// Usage:
+//   .foo {
+//     font-size: typography(base, font-size);
+//     font-family: typography(font-family);
+//   }
+
+@function typography($map, $keys...) {
+  @return map-get-deep($typography, $map, $keys...);
+}
