@@ -1,0 +1,17 @@
+// ==========================================================================
+// Globals / Utilities / Hide
+// ==========================================================================
+
+
+.u-hide {
+  @include responsivize() {
+    display: none !important; /* stylelint-disable-line */
+  }
+}
+
+
+.u-hide-visually {
+  @include responsivize() {
+    @include hide-visually();
+  }
+}

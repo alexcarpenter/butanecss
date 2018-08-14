@@ -1,10 +1,13 @@
 {
   "name": "butanecss",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "src/index.scss",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "sass src/index.scss dist/index.css",
+    "watch": "sass --watch src/index.scss dist/index.css",
+    "minify": "cssnano dist/index.css dist/index.min.css",
+    "lint:scss": "stylelint './src/**/*.scss' --syntax scss"
   },
   "repository": {
     "type": "git",
@@ -21,5 +24,12 @@
   "bugs": {
     "url": "https://github.com/alexcarpenter/butanecss/issues"
   },
-  "homepage": "https://github.com/alexcarpenter/butanecss#readme"
+  "homepage": "https://github.com/alexcarpenter/butanecss#readme",
+  "devDependencies": {
+    "cssnano-cli": "^1.0.5",
+    "node-sass": "^4.9.3",
+    "sass-mq": "^5.0.0",
+    "stylelint": "^9.4.0",
+    "stylelint-scss": "^3.3.0"
+  }
 }

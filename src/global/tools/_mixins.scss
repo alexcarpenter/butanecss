@@ -1,0 +1,138 @@
+// ==========================================================================
+// Global / Tools / Mixins
+// ==========================================================================
+
+
+// @include hide-visually()
+// ==============================================
+
+// Visually hide content, leaving it accessible to screenreaders and ATs.
+// http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+@mixin hide-visually() {
+  /* stylelint-disable */
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+  /* stylelint-enable */
+}
+
+
+// @include hocus()
+// ==============================================
+
+// Generate `:hover` and `:focus` styles in one go.
+// http://www.456bereastreet.com/archive/201004/whenever_you_use_hover_also_use_focus/
+@mixin hocus() {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+
+// @include clearfix()
+// ==============================================
+
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+// @include responsivize()
+// ==============================================
+
+// This mixin can be applied to any class and will produce classes that apply at
+// breakpoints as well as one that applies to all breakpoints.
+// The mixin takes one argument - a list of keys separated by spaces.
+// The keys in the argument must be present in the $mq-breakpoints map
+// (small, medium, large, x-large).
+//
+// If no argument is provided, it is presumed that you want classes generating
+// for all breakpoints in the $mq-breakpoints map.
+//
+// For example:
+//
+// .foo {
+//   @include responsivize() {
+//     color: red;
+//   }
+// }
+//
+// Will produce the following:
+//
+// .foo {
+//   color: red;
+// }
+//
+// And for each breakpoint key in $mq-breakpoints (example below for small
+// breakpoint):
+//
+// @media (min-width: 420px) {
+//   .foo\@small {
+//     color: red;
+//   }
+// }
+//
+// If an argument list is provided and it contains items that are keys in the
+// $mq-breakpoints map, responsive classes will be compiled for ONLY those
+// breakpoints.
+//
+// For example:
+//
+// .foo {
+//   @include responsivize(small medium) {
+//     color: red;
+//   }
+// }
+//
+// Will produce the following:
+//
+// .foo {
+//   color: red;
+// }
+//
+// And for each item in the argument list that matches a breakpoint key in
+// $mq-breakpoints:
+//
+// @media (min-width: 420px) {
+//   .foo\@small {
+//     color: red;
+//   }
+// }
+//
+// @media (min-width: 740px) {
+//   .foo\@medium {
+//     color: red;
+//   }
+// }
+//
+
+@mixin responsivize($breakpoints: $mq-breakpoints) {
+  @at-root #{&} {
+    @content;
+  }
+
+  @each $alias, $bp in $breakpoints {
+    @if map-has-key($mq-breakpoints, $alias) {
+      @include mq($from: map-get($mq-breakpoints, $alias)) {
+        @at-root #{&}\@#{$alias} {
+          @content;
+        }
+      }
+    }
+
+    @else {
+      @warn "Unrecognised breakpoint - `#{$alias}` does not match any of the keys in the $mq-breakpoints map";
+    }
+  }
+}

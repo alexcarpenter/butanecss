@@ -1,16 +1,9 @@
 // ==========================================================================
-// Components / Card
+// Global / Objects / Container
 // ==========================================================================
 
 
-.c-card {
-
-  // Card Media
-  .c-card__media {}
-
-  // Card Body
-  .c-card__body {}
-
-  // Card Footer
-  .c-card__footer {}
+.o-container {
+  margin-right: auto;
+  margin-left: auto;
 }
