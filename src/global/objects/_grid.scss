@@ -1,0 +1,59 @@
+// ==========================================================================
+// Global / Objects / Grid
+// ==========================================================================
+
+
+// Grid settings
+$grid-gutter-size: 20px;
+
+
+.o-grid {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.o-grid__cell {
+  flex-basis: 100%;
+  min-width: 0;
+}
+
+
+// Modifier: center align all grid cells
+.o-grid--alignCenter {
+  justify-content: center;
+}
+
+
+// Modifier: right align all grid cells
+.o-grid--alignRight {
+  justify-content: flex-end;
+}
+
+
+// Modifier: middle-align grid cells
+.o-grid--alignMiddle {
+  align-items: center;
+}
+
+
+// Modifier: bottom-align grid cells
+.o-grid--alignBottom {
+  align-items: flex-end;
+}
+
+
+// Modifier: equally distribute grid cells
+.o-grid--fill > .o-grid__cell {
+  flex: 1 1 0%;
+}
+
+
+// Grid with gutters
+.o-grid--withGutter {
+  margin: 0 calc(-0.5 * #{$grid-gutter-size}) calc(-1 * #{$grid-gutter-size});
+
+  > .o-grid__cell {
+    padding: 0 calc(0.5 * #{$grid-gutter-size}) $grid-gutter-size;
+  }
+}

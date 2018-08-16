@@ -3,7 +3,13 @@
 // ==========================================================================
 
 
+// Container settings
+$container-max-width: 1200px;
+
+
 .o-container {
+  width: 100%;
+  max-width: $container-max-width;
   margin-right: auto;
   margin-left: auto;
 }
